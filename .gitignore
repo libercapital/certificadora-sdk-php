@@ -1,0 +1,13 @@
+*.bak
+*.DS_Store
+*.log
+*.sublime-project
+*.sublime-workspace
+.idea
+.php_cs
+composer.lock
+phpdox.xml
+phpunit.xml
+sftp-config.json
+vendor/
+phpunit.xml

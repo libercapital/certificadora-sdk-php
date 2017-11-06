@@ -1,0 +1,43 @@
+{
+    "name": "libercapital/certificadora-sdk-php",
+    "description": "Liber Certificadora PHP SDK.",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [],
+    "homepage": "https://www.libercapital.com.br/",
+    "authors": [
+        {
+            "name": "Flavio Heleno",
+            "email": "flavio@libercapital.com.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Liber\\": "src/Liber",
+            "Test\\": "test"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.0",
+        "lcobucci/jwt": "^3.1",
+        "roave/security-advisories": "dev-master"
+    },
+    "require-dev": {
+        "ext-xsl": "*",
+        "friendsofphp/php-cs-fixer": "@stable",
+        "pdepend/pdepend": "@stable",
+        "phploc/phploc": "@stable",
+        "phpmd/phpmd" : "@stable",
+        "phpunit/dbunit": "@stable",
+        "phpunit/phpunit": "@stable",
+        "psy/psysh": "@stable",
+        "sebastian/phpcpd": "@stable",
+        "sensiolabs/security-checker": "@stable",
+        "squizlabs/php_codesniffer": "@stable",
+        "theseer/phpdox": "@stable"
+    },
+    "config": {
+        "optimize-autoloader": false
+    }
+}
