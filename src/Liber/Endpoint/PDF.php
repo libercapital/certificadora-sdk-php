@@ -71,6 +71,10 @@ class PDF extends AbstractEndpoint {
             ]
         );
 
+        if (! is_array($response)) {
+            throw new SDKException('Invalid API response format');
+        }
+
         if (! $response['status']) {
             throw new SDKException('Invalid API response');
         }
@@ -110,8 +114,8 @@ class PDF extends AbstractEndpoint {
             sprintf('/beta/statusPDF/%s', $documentToken)
         );
 
-        if (empty($response)) {
-            throw new SDKException('Invalid API response');
+        if (! is_array($response)) {
+            throw new SDKException('Invalid API response format');
         }
 
         return $response;
