@@ -53,7 +53,7 @@ class SDK {
     public function __construct(
         string $apiKey,
         Client $client,
-        string $baseUrl = 'https://certificadora.libercapital.com.br/api/v1'
+        string $baseUrl = 'https://api.cert.libercapital.com.br/v1'
     ) {
         $this->apiKey = $apiKey;
         $this

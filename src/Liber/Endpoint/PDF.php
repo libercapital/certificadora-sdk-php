@@ -22,9 +22,8 @@ class PDF extends AbstractEndpoint {
      * @return string The document token ($documentToken) to be used on upload/sign methods
      */
     public function setup(array $setup) : string {
-        // FIXME
         $response = $this->sendPost(
-            '/beta/signatureConfig',
+            '/pdf',
             [],
             $setup
         );
@@ -61,9 +60,8 @@ class PDF extends AbstractEndpoint {
             );
         }
 
-        // FIXME
-        $response = $this->sendPost(
-            sprintf('/beta/uploadPDF/%s', $documentToken),
+        $response = $this->sendPut(
+            sprintf('/pdf/%s/file', $documentToken),
             [],
             file_get_contents($originalFilePath),
             [
@@ -109,9 +107,8 @@ class PDF extends AbstractEndpoint {
      * @return string The PDF status
      */
     public function status(string $documentToken) : string {
-        // FIXME
         $response = $this->sendGet(
-            sprintf('/beta/statusPDF/%s', $documentToken)
+            sprintf('/pdf/%s', $documentToken)
         );
 
         if (! is_array($response)) {
@@ -133,9 +130,8 @@ class PDF extends AbstractEndpoint {
      * @return void
      */
     public function download(string $documentToken, string $signedFilePath) {
-        // FIXME
         $response = $this->sendGet(
-            sprintf('/beta/downloadPDF/%s', $documentToken)
+            sprintf('/pdf/%s/file', $documentToken)
         );
 
         if (empty($response)) {
