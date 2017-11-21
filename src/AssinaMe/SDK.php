@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Liber;
+namespace AssinaMe;
 
 use GuzzleHttp\Client;
-use Liber\Endpoint\EndpointInterface;
+use AssinaMe\Endpoint\EndpointInterface;
 
 class SDK {
     /**
@@ -53,7 +53,7 @@ class SDK {
     public function __construct(
         string $apiKey,
         Client $client,
-        string $baseUrl = 'https://certificadora.libercapital.com.br/api/v1'
+        string $baseUrl = 'https://api.assina.me/v1'
     ) {
         $this->apiKey = $apiKey;
         $this
@@ -109,7 +109,7 @@ class SDK {
      *
      * @param string $name
      *
-     * @return \Liber\Endpoint\EndpointInterface
+     * @return \AssinaMe\Endpoint\EndpointInterface
      */
     public function __get(string $name) : EndpointInterface {
         $className = $this->getEndpointClassName($name);
@@ -131,7 +131,7 @@ class SDK {
     protected function getEndpointClassName(string $name) : string {
         $className = sprintf(
             '%s\\%s\\%s',
-            'Liber',
+            'AssinaMe',
             'Endpoint',
             ucfirst($name)
         );

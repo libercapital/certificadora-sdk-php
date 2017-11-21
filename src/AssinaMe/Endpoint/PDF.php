@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Liber\Endpoint;
+namespace AssinaMe\Endpoint;
 
-use Liber\Exception\SDKException;
-use Liber\Utils;
+use AssinaMe\Exception\SDKException;
+use AssinaMe\Utils;
 
 /**
  * PDF Endpoint class.
@@ -16,15 +16,14 @@ class PDF extends AbstractEndpoint {
      *
      * @param array $setup
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return string The document token ($documentToken) to be used on upload/sign methods
      */
     public function setup(array $setup) : string {
-        // FIXME
         $response = $this->sendPost(
-            '/beta/signatureConfig',
+            '/pdf',
             [],
             $setup
         );
@@ -46,8 +45,8 @@ class PDF extends AbstractEndpoint {
      * @param string $documentToken
      * @param string $originalFilePath
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return void
      */
@@ -61,9 +60,8 @@ class PDF extends AbstractEndpoint {
             );
         }
 
-        // FIXME
-        $response = $this->sendPost(
-            sprintf('/beta/uploadPDF/%s', $documentToken),
+        $response = $this->sendPut(
+            sprintf('/pdf/%s/file', $documentToken),
             [],
             file_get_contents($originalFilePath),
             [
@@ -86,8 +84,8 @@ class PDF extends AbstractEndpoint {
      * @param array  $setup
      * @param string $originalFilePath
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return string The document token to be used by the JavaScript SDK
      */
@@ -103,15 +101,14 @@ class PDF extends AbstractEndpoint {
      *
      * @param string $documentToken
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return string The PDF status
      */
     public function status(string $documentToken) : string {
-        // FIXME
         $response = $this->sendGet(
-            sprintf('/beta/statusPDF/%s', $documentToken)
+            sprintf('/pdf/%s', $documentToken)
         );
 
         if (! is_array($response)) {
@@ -127,15 +124,18 @@ class PDF extends AbstractEndpoint {
      * @param string $documentToken
      * @param string $signedFilePath
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return void
      */
     public function download(string $documentToken, string $signedFilePath) {
-        // FIXME
         $response = $this->sendGet(
-            sprintf('/beta/downloadPDF/%s', $documentToken)
+            sprintf('/pdf/%s/file', $documentToken),
+            [],
+            [
+                'Accept' => 'application/pdf'
+            ]
         );
 
         if (empty($response)) {

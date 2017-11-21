@@ -2,11 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Liber\Endpoint;
+namespace AssinaMe\Endpoint;
 
 use GuzzleHttp\Client;
-use Liber\Exception\SDKError;
-use Liber\Exception\SDKException;
+use AssinaMe\Exception\SDKError;
+use AssinaMe\Exception\SDKException;
 
 abstract class AbstractEndpoint implements EndpointInterface {
     /**
