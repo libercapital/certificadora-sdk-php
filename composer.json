@@ -1,10 +1,10 @@
 {
-    "name": "libercapital/certificadora-sdk-php",
-    "description": "Liber Certificadora PHP SDK.",
+    "name": "assiname/sdk-php",
+    "description": "Assina.me SDK PHP.",
     "license": "MIT",
     "type": "library",
     "keywords": [],
-    "homepage": "https://www.libercapital.com.br/",
+    "homepage": "https://www.assina.me/",
     "authors": [
         {
             "name": "Flavio Heleno",
@@ -13,14 +13,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "Liber\\": "src/Liber",
+            "AssinaMe\\": "src/AssinaMe",
             "Test\\": "test"
         }
     },
     "require": {
         "php": ">=7.0",
         "guzzlehttp/guzzle": "^6.0",
-        "lcobucci/jwt": "^3.1",
         "roave/security-advisories": "dev-master"
     },
     "require-dev": {

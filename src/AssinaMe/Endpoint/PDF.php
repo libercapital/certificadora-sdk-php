@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Liber\Endpoint;
+namespace AssinaMe\Endpoint;
 
-use Liber\Exception\SDKException;
-use Liber\Utils;
+use AssinaMe\Exception\SDKException;
+use AssinaMe\Utils;
 
 /**
  * PDF Endpoint class.
@@ -16,8 +16,8 @@ class PDF extends AbstractEndpoint {
      *
      * @param array $setup
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return string The document token ($documentToken) to be used on upload/sign methods
      */
@@ -45,8 +45,8 @@ class PDF extends AbstractEndpoint {
      * @param string $documentToken
      * @param string $originalFilePath
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return void
      */
@@ -84,8 +84,8 @@ class PDF extends AbstractEndpoint {
      * @param array  $setup
      * @param string $originalFilePath
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return string The document token to be used by the JavaScript SDK
      */
@@ -101,8 +101,8 @@ class PDF extends AbstractEndpoint {
      *
      * @param string $documentToken
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return string The PDF status
      */
@@ -124,14 +124,18 @@ class PDF extends AbstractEndpoint {
      * @param string $documentToken
      * @param string $signedFilePath
      *
-     * @throws \Liber\Exception\SDKError
-     * @throws \Liber\Exception\SDKException
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
      *
      * @return void
      */
     public function download(string $documentToken, string $signedFilePath) {
         $response = $this->sendGet(
-            sprintf('/pdf/%s/file', $documentToken)
+            sprintf('/pdf/%s/file', $documentToken),
+            [],
+            [
+                'Accept' => 'application/pdf'
+            ]
         );
 
         if (empty($response)) {

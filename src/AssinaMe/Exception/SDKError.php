@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Liber\Exception;
+namespace AssinaMe\Exception;
 
 use Exception;
 

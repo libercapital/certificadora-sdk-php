@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Liber;
+namespace AssinaMe;
 
 class Utils {
     public static function atomicPutContents(string $filename, $contents, int $flags = 0) {
