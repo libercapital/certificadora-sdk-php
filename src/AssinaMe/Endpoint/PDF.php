@@ -144,4 +144,30 @@ class PDF extends AbstractEndpoint {
 
         file_put_contents($signedFilePath, $response);
     }
+
+    /**
+     * Retrieves details about a signed PDF file.
+     *
+     * @param string $documentToken
+     *
+     * @throws \AssinaMe\Exception\SDKError
+     * @throws \AssinaMe\Exception\SDKException
+     *
+     * @return array The signature list
+     */
+    public function details(string $documentToken) {
+        $response = $this->sendGet(
+            sprintf('/pdf/%s/details', $documentToken)
+        );
+
+        if (! is_array($response)) {
+            throw new SDKException('Invalid API response format');
+        }
+
+        if (empty($response['signatures'])) {
+            throw new SDKException('API response does not contain "signatures"');
+        }
+
+        return $response['signatures'];
+    }
 }
